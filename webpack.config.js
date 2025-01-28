@@ -1,44 +1,51 @@
 // webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const DotenvPlugin = require("dotenv-webpack");
 
-module.exports = {
-  entry: {
-    bundle: "./src",
-  },
-  output: {
-    clean: true,
-    filename: "[name].js",
-    path: path.resolve(__dirname, "build"),
-  },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+module.exports = (_env, argv) => {
+  const { mode } = argv;
+
+  return {
+    entry: {
+      bundle: "./src",
     },
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
+    output: {
+      clean: true,
+      filename: "[name].js",
+      path: path.resolve(__dirname, "build"),
+    },
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
       },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"],
+        },
+      ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "public/index.html",
+      }),
+      new DotenvPlugin({
+        path: mode === "development" ? ".env.development" : ".env",
+      }),
     ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "public/index.html",
-    }),
-  ],
-  devServer: {
-    port: 9000,
-    hot: true,
-    open: true,
-  },
+    devServer: {
+      port: 9000,
+      hot: true,
+      open: true,
+    },
+  };
 };
-``;
