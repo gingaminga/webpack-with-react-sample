@@ -1,5 +1,5 @@
 {
-  "name": "webpack-with-react-sample",
+  "name": "webpack-with-electron-sample",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
