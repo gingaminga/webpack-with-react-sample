@@ -1,4 +1,4 @@
-import "@/main.css";
+import "@/renderer/main.css";
 
 export default function App() {
   return (

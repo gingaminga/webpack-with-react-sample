@@ -1,9 +1,11 @@
 {
   "name": "webpack-with-electron-sample",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/main",
   "scripts": {
-    "dev": "webpack serve --mode=development --stats-error-details"
+    "dev-electron": "electronmon .",
+    "dev-main": "webpack serve --config webpack.main.config.js --mode=development",
+    "dev-renderer": "webpack serve --config webpack.renderer.config.js --mode=development"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,8 @@
     "@types/react-dom": "^19.0.3",
     "css-loader": "^7.1.2",
     "dotenv-webpack": "^8.1.0",
+    "electron": "^34.0.1",
+    "electronmon": "^2.0.3",
     "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.2",

@@ -1,25 +1,18 @@
-// webpack.config.js
 const path = require("path");
+const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const DotenvPlugin = require("dotenv-webpack");
+const common = require("./webpack.common.js");
 
 module.exports = (_env, argv) => {
   const { mode } = argv;
 
-  return {
-    entry: {
-      bundle: "./src",
-    },
+  return merge(common, {
+    target: "web",
+    entry: "./src/renderer",
     output: {
-      clean: true,
-      filename: "[name].js",
-      path: path.resolve(__dirname, "build"),
-    },
-    resolve: {
-      alias: {
-        "@": path.resolve(__dirname, "./src"),
-      },
-      extensions: [".js", ".jsx", ".ts", ".tsx"],
+      path: path.resolve(__dirname, "build/renderer"),
+      filename: "renderer.js",
     },
     module: {
       rules: [
@@ -43,9 +36,11 @@ module.exports = (_env, argv) => {
       }),
     ],
     devServer: {
-      port: 9000,
+      port: 3000,
       hot: true,
-      open: true,
+      devMiddleware: {
+        writeToDisk: true,
+      },
     },
-  };
+  });
 };
