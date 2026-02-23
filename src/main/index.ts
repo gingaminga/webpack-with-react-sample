@@ -14,6 +14,7 @@ const createWindow = () => {
   console.log("4444");
   console.log("5555");
   console.log("6666");
+  console.log("7777");
 };
 
 app.whenReady().then(() => {
