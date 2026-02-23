@@ -9,6 +9,7 @@ const createWindow = () => {
   win.webContents.openDevTools();
   win.loadURL("http://localhost:3000");
   console.log("1111");
+  console.log("2222");
 };
 
 app.whenReady().then(() => {
