@@ -20,4 +20,5 @@ app.on("window-all-closed", function () {
   console.log("8888");
   console.log("7777");
   console.log("6666");
+  console.log("5555");
 });
